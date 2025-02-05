@@ -3,13 +3,33 @@
 
 using namespace std;
 
+class UserName {
+public:
+    string value;
+    UserName(string name) {
+        if (name.empty()) throw invalid_argument("Name cannot be empty");
+        value = name;
+    }
+};
+
+class UserAge {
+public:
+    int value;
+    UserAge(int age) {
+        if (age < 0) throw invalid_argument("Age cannot be negative");
+        value = age;
+    }
+};
+
 class User {
 public:
-    string name;
-    int age;
+    UserName name;
+    UserAge age;
+
+    User(string name, int age) : name(name), age(age) {}
 
     void printInfo() {
-        cout << "Name: " << name << ", Age: " << age << endl;
+        cout << "Name: " << name.value << ", Age: " << age.value << endl;
     }
 };
 
