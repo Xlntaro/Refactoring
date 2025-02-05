@@ -13,7 +13,7 @@ public:
     }
 };
 
-class Database {
+class UserManager {
 public:
     vector<User> users;
 
@@ -23,13 +23,17 @@ public:
         user.age = age;
         users.push_back(user);
     }
+};
 
-    void printAllUsers() {
+class UserPrinter {
+public:
+    void printAllUsers(const vector<User>& users) {
         for (int i = 0; i < users.size(); i++) {
-            cout << "User " << i + 1 << ": " << users[i].name << ", " << users[i].age << endl;
+            users[i].printInfo();
         }
     }
 };
+
 
 int main() {
     Database db;
