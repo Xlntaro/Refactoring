@@ -48,8 +48,8 @@ public:
 class UserPrinter {
 public:
     void printAllUsers(const vector<User>& users) {
-        for (int i = 0; i < users.size(); i++) {
-            users[i].printInfo();
+        for (const auto& user : users) {
+            user.printInfo();
         }
     }
 };
