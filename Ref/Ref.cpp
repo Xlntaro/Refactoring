@@ -3,17 +3,37 @@
 
 using namespace std;
 
-class User {
+class UserName {
 public:
-    string name;
-    int age;
-
-    void printInfo() {
-        cout << "Name: " << name << ", Age: " << age << endl;
+    string value;
+    UserName(string name) {
+        if (name.empty()) throw invalid_argument("Name cannot be empty");
+        value = name;
     }
 };
 
-class Database {
+class UserAge {
+public:
+    int value;
+    UserAge(int age) {
+        if (age < 0) throw invalid_argument("Age cannot be negative");
+        value = age;
+    }
+};
+
+class User {
+public:
+    UserName name;
+    UserAge age;
+
+    User(string name, int age) : name(name), age(age) {}
+
+    void printInfo() {
+        cout << "Name: " << name.value << ", Age: " << age.value << endl;
+    }
+};
+
+class UserManager {
 public:
     vector<User> users;
 
@@ -23,13 +43,17 @@ public:
         user.age = age;
         users.push_back(user);
     }
+};
 
-    void printAllUsers() {
-        for (int i = 0; i < users.size(); i++) {
-            cout << "User " << i + 1 << ": " << users[i].name << ", " << users[i].age << endl;
+class UserPrinter {
+public:
+    void printAllUsers(const vector<User>& users) {
+        for (const auto& user : users) {
+            user.printInfo();
         }
     }
 };
+
 
 int main() {
     Database db;
